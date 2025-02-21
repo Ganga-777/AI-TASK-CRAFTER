@@ -1,19 +1,50 @@
-# AI Task Crafters
+# AI Task Crafter
 
-A modern web application built with React, TypeScript, and shadcn-ui components.
+A modern task management application built with React, TypeScript, and modern web technologies. Experience seamless task organization with a beautiful UI and intelligent task suggestions.
 
-## 🚀 Quick Start
+🌐 **Live Demo**: [AI Task Crafter](https://ai-task-crafter.vercel.app/)
+
+![Task Manager Preview](public/og-image.png)
+
+## ✨ Features
+
+- **Modern UI/UX**: Beautiful interface with smooth animations and transitions
+- **AI-Powered Suggestions**: Get intelligent task suggestions using Google's Gemini API
+- **Real-time Updates**: Dynamic task management with instant feedback
+- **Theme Customization**: Multiple theme options including Cosmic Night, Aurora Borealis, and Sunset Fusion
+- **Priority Management**: Color-coded priority levels with visual indicators
+- **Tag System**: Organize tasks with customizable tags
+- **Due Date Tracking**: Set and monitor task deadlines
+- **Responsive Design**: Works seamlessly across all devices
+
+## 🛠️ Technology Stack
+
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **UI Components**: 
+  - shadcn/ui for base components
+  - Tailwind CSS for styling
+  - Framer Motion for animations
+- **State Management**: React Context API
+- **Form Handling**: React Hook Form
+- **Data Persistence**: Local Storage with real-time sync
+- **AI Integration**: Google Gemini API
+- **Notifications**: Sonner for toast notifications
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher) - [Install Node.js](https://nodejs.org/)
+
+- Node.js (v18 or higher)
 - npm (comes with Node.js)
+- Google API Key (for AI suggestions)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone <YOUR_GIT_URL>
-cd ai-task-crafters-main
+git clone https://github.com/yourusername/ai-task-crafter.git
+cd ai-task-crafter
 ```
 
 2. Install dependencies:
@@ -21,33 +52,40 @@ cd ai-task-crafters-main
 npm install
 ```
 
-3. Start the development server:
+3. Create a `.env` file in the root directory and add your Google API key:
+```env
+VITE_GOOGLE_API_KEY=your_api_key_here
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open your browser and visit: `http://localhost:5173`
+5. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-## 🛠️ Technology Stack
+## 📱 Core Features
 
-- **Frontend Framework**: React 18
-- **Language**: TypeScript
-- **Build Tool**: Vite
-- **UI Components**: shadcn-ui
-- **Styling**: Tailwind CSS
-- **Form Handling**: React Hook Form
-- **Data Fetching**: TanStack Query
-- **Routing**: React Router DOM
-- **Animations**: Framer Motion
+### Task Management
+- Create, edit, and delete tasks
+- Set priority levels (Low, Medium, High)
+- Add due dates and tags
+- Mark tasks as complete/incomplete
+- Archive completed tasks
 
-## 📱 Features
+### AI Integration
+- Get smart task suggestions
+- Priority recommendations
+- Task organization tips
+- Time management advice
 
-- Modern and responsive UI
-- Type-safe development with TypeScript
-- Fast development server with Vite
-- Beautiful UI components from shadcn-ui
-- Efficient styling with Tailwind CSS
-- Smooth animations with Framer Motion
+### User Interface
+- Responsive design
+- Dark/Light mode
+- Custom theme options
+- Animated transitions
+- Toast notifications
+- Loading states
 
 ## 🔧 Available Scripts
 
@@ -55,49 +93,47 @@ npm run dev
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript checks
 
-## 📝 Development Guide
+## 📁 Project Structure
 
-### Project Structure
 ```
 src/
 ├── components/     # Reusable UI components
-├── pages/         # Application pages/routes
+├── contexts/      # React Context providers
 ├── hooks/         # Custom React hooks
-├── utils/         # Utility functions
-├── styles/        # Global styles
-└── App.tsx        # Main application component
+├── pages/         # Application pages/routes
+├── styles/        # Global styles and theme
+└── utils/         # Utility functions
 ```
 
-### Making Changes
+## 🎨 UI Components
 
-1. **Using an IDE**:
-   - Clone the repository
-   - Make changes in your preferred IDE
-   - Commit and push changes
+- **TaskList**: Display and manage tasks
+- **CreateTask**: Task creation form
+- **TaskCard**: Individual task display
+- **AISuggestions**: AI-powered task suggestions
+- **LoginForm**: User authentication
+- **Dashboard**: Main task overview
 
-2. **Using GitHub**:
-   - Navigate to files on GitHub
-   - Use the pencil icon to edit
-   - Commit changes directly
+## 🔐 Authentication
 
-3. **Using GitHub Codespaces**:
-   - Click "Code" > "Codespaces"
-   - Create a new codespace
-   - Edit in the browser
+The application uses a simple authentication system with the following features:
+- User login/logout
+- Session persistence
+- Protected routes
+- Form validation
 
-## 🚀 Deployment
+## 🌐 Deployment
 
-### Using Lovable
-1. Visit [Lovable Project](https://lovable.dev/projects/b0e73911-b6c6-4f73-a727-7c538e765975)
-2. Click Share -> Publish
+The application is deployed on Vercel. For your own deployment:
 
-### Using Other Platforms
-For custom domain deployment, we recommend using Netlify:
-1. Connect your GitHub repository
-2. Configure build settings:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
+1. Fork this repository
+2. Create a new project on [Vercel](https://vercel.com)
+3. Connect your repository
+4. Add environment variables:
+   - `VITE_GOOGLE_API_KEY`
+5. Deploy!
 
 ## 🤝 Contributing
 
@@ -107,76 +143,21 @@ For custom domain deployment, we recommend using Netlify:
 4. Push to the branch
 5. Open a Pull Request
 
-## 📫 Support
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for beautiful base components
+- [Framer Motion](https://www.framer.com/motion/) for smooth animations
+- [Google Gemini](https://ai.google.dev/) for AI capabilities
+- [Vercel](https://vercel.com) for hosting
+
+## 📫 Contact
 
 For support or questions, please open an issue in the GitHub repository.
 
-# Welcome to your Lovable project
+---
 
-## Project info
-
-**URL**: https://lovable.dev/projects/b0e73911-b6c6-4f73-a727-7c538e765975
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/b0e73911-b6c6-4f73-a727-7c538e765975) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/b0e73911-b6c6-4f73-a727-7c538e765975) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Built with ❤️ using React, TypeScript, and modern web technologies. 
