@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Priority, useTask } from '@/contexts/TaskContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, X, Calendar, Clock, Tag, AlertCircle } from 'lucide-react';
+import { Plus, X, Calendar, Tag } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function CreateTask() {
@@ -44,20 +44,6 @@ export function CreateTask() {
     setIsExpanded(false);
   };
 
-  const handleAddTag = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && newTag.trim()) {
-      e.preventDefault();
-      if (!tags.includes(newTag.trim())) {
-        setTags([...tags, newTag.trim()]);
-      }
-      setNewTag('');
-    }
-  };
-
-  const removeTag = (tagToRemove: string) => {
-    setTags(tags.filter(tag => tag !== tagToRemove));
-  };
-
   return (
     <motion.div
       initial={false}
@@ -93,101 +79,58 @@ export function CreateTask() {
             className="p-4"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Task title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-md border-none bg-background/50 px-4 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 transition-all"
-                  autoFocus
-                />
-                
-                <textarea
-                  placeholder="Task description (optional)"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="w-full rounded-md border-none bg-background/50 px-4 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 transition-all min-h-[100px] resize-none"
-                  rows={3}
-                />
+              <input
+                type="text"
+                placeholder="Task title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full rounded-md border bg-background/50 px-4 py-2 focus:ring-2 focus:ring-primary/20"
+                autoFocus
+              />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-foreground/80">
-                      Priority
-                    </label>
-                    <div className="flex gap-2">
-                      {(['low', 'medium', 'high'] as Priority[]).map((p) => (
-                        <button
-                          key={p}
-                          type="button"
-                          onClick={() => setPriority(p)}
-                          className={`flex-1 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
-                            priority === p
-                              ? p === 'high'
-                                ? 'bg-destructive/20 text-destructive'
-                                : p === 'medium'
-                                ? 'bg-warning/20 text-warning'
-                                : 'bg-success/20 text-success'
-                              : 'bg-muted/20 text-muted-foreground hover:bg-muted/30'
-                          }`}
-                        >
-                          {p.charAt(0).toUpperCase() + p.slice(1)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+              <textarea
+                placeholder="Task description (optional)"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full rounded-md border bg-background/50 px-4 py-2 min-h-[100px] resize-none focus:ring-2 focus:ring-primary/20"
+              />
 
-                  <div className="space-y-2">
-                    <label className="block text-sm font-medium text-foreground/80">
-                      Due Date
-                    </label>
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                      <input
-                        type="date"
-                        value={dueDate}
-                        onChange={(e) => setDueDate(e.target.value)}
-                        className="w-full rounded-md border-none bg-background/50 pl-10 pr-4 py-1.5 text-foreground focus:ring-2 focus:ring-primary/20 transition-all"
-                      />
-                    </div>
+              <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+                <div className="flex-1 space-y-2">
+                  <label className="block text-sm font-medium">Priority</label>
+                  <div className="flex gap-2">
+                    {(['low', 'medium', 'high'] as Priority[]).map((p) => (
+                      <button
+                        key={p}
+                        type="button"
+                        onClick={() => setPriority(p)}
+                        className={`flex-1 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                          priority === p
+                            ? p === 'high'
+                              ? 'bg-red-500 text-white'
+                              : p === 'medium'
+                              ? 'bg-yellow-500 text-white'
+                              : 'bg-green-500 text-white'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                      >
+                        {p.charAt(0).toUpperCase() + p.slice(1)}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground/80">
-                    Tags
-                  </label>
+                <div className="flex-1 space-y-2">
+                  <label className="block text-sm font-medium">Due Date</label>
                   <div className="relative">
-                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
                     <input
-                      type="text"
-                      value={newTag}
-                      onChange={(e) => setNewTag(e.target.value)}
-                      onKeyDown={handleAddTag}
-                      placeholder="Add tags (press Enter)"
-                      className="w-full rounded-md border-none bg-background/50 pl-10 pr-4 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 transition-all"
+                      type="date"
+                      value={dueDate}
+                      onChange={(e) => setDueDate(e.target.value)}
+                      className="w-full rounded-md border bg-background/50 pl-10 pr-4 py-1.5 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
-                  {tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-sm"
-                        >
-                          #{tag}
-                          <button
-                            type="button"
-                            onClick={() => removeTag(tag)}
-                            className="hover:text-destructive"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
 
@@ -195,13 +138,13 @@ export function CreateTask() {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus:ring-2 focus:ring-primary/20 transition-all"
+                  className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90 focus:ring-2 focus:ring-primary/20"
                 >
                   Create Task
                 </button>
